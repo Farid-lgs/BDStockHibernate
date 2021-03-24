@@ -36,7 +36,7 @@ public class Main {
         DAOCommande daocmd = new DAOCommande();
         daocmd.add(cmd);*/
 		
-		DAOCommande daocmd = new DAOCommande();
+		CommandeDaoImpl daocmd = new CommandeDaoImpl();
 		List<Commande> list = daocmd.findAll();
 		for(Commande cc : list) {
 			CommandeId cid = cc.getId();
