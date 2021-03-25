@@ -1,4 +1,4 @@
-package src.persistence.dao;
+package persistence.dao;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.hibernate.Transaction;
 import persistence.entities.Categorie;
 import persistence.entities.Produit;
 
-public class CategorieDaoImpl implements CategorieDAO {
+public class CategorieDaoImpl implements GlobalDao<Categorie> {
 
 	@Override
 	public void add(Categorie categorie) {
@@ -47,10 +47,10 @@ public class CategorieDaoImpl implements CategorieDAO {
 	}
 
 	@Override
-	public Categorie findById(int idcateg) {
+	public Categorie findById(Object object) {
 		Categorie categorie = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            categorie = session.get(Categorie.class, idcateg);
+            categorie = session.get(Categorie.class,(int) object);
         }
         return categorie;
 	}

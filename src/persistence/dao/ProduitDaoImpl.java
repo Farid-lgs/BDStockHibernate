@@ -1,13 +1,14 @@
-package src.persistence.dao;
+package persistence.dao;
 
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import persistence.entities.Categorie;
 import persistence.entities.Produit;
 
-public class ProduitDaoImpl implements ProduitDAO{
+public class ProduitDaoImpl implements GlobalDao<Produit>{
 	
 	@Override
     public void add(Produit produit) {
@@ -37,10 +38,10 @@ public class ProduitDaoImpl implements ProduitDAO{
     }
 
     @Override
-    public Produit findById(int id) {
+    public Produit findById(Object id) {
         Produit produit = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            produit = session.get(Produit.class, id);
+            produit = session.get(Produit.class,(int) id);
         }
         return produit;
     }

@@ -1,4 +1,4 @@
-package src.persistence.dao;
+package persistence.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,9 +6,10 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import persistence.entities.Categorie;
 import persistence.entities.Client;
 
-public class ClientDaoImpl implements ClientDAO {
+public class ClientDaoImpl implements GlobalDao<Client> {
 
 	@Override
 	public void add(Client client) {
@@ -49,9 +50,9 @@ public class ClientDaoImpl implements ClientDAO {
 	}
 
 	@Override
-	public Client findById(int idclient) {
+	public Client findById(Object idclient) {
 		Session s = HibernateUtil.getSessionFactory().openSession();
-		Client client = s.get(Client.class, idclient);
+		Client client = s.get(Client.class,(int) idclient);
 		s.close();
 		return client;
 	}

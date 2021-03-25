@@ -1,19 +1,10 @@
 package bdstock.ihm;
 
-import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import persistence.dao.DAOCategorie;
-import persistence.dao.DAOClient;
-import persistence.dao.DAOCommande;
-import persistence.dao.DAOProduit;
-import persistence.entities.Categorie;
-import persistence.entities.Client;
+import persistence.dao.CommandeDaoImpl;
 import persistence.entities.Commande;
 import persistence.entities.CommandeId;
-import persistence.entities.Produit;
 
 public class Main {
 

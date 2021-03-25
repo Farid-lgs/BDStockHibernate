@@ -1,4 +1,4 @@
-package src.persistence.dao;
+package persistence.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,11 +6,12 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import persistence.entities.Categorie;
 import persistence.entities.Client;
 import persistence.entities.Commande;
 import persistence.entities.CommandeId;
 
-public class CommandeDaoImpl implements CommandeDAO {
+public class CommandeDaoImpl implements GlobalDao<Commande> {
 
 	@Override
 	public void add(Commande command) {
@@ -51,9 +52,9 @@ public class CommandeDaoImpl implements CommandeDAO {
 	}
 
 	@Override
-	public Commande findById(CommandeId commande) {
+	public Commande findById(Object commande) {
 		Session s = HibernateUtil.getSessionFactory().openSession();
-		Commande cmd = s.get(Commande.class, commande);
+		Commande cmd = s.get(Commande.class,(CommandeId) commande);
 		s.close();
 		return cmd;
 	}
